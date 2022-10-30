@@ -17,6 +17,17 @@ namespace DevCard.Controllers
             var model = new Contact();
             return View(model);
         }
+        [HttpPost]
+        public IActionResult Contact(Contact model)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.error = "اطلاعات وارد شده صحیح نیست";
+                return View(model);
+            }
+            ViewBag.success = "پیغام شما با موفقیت ارسال شد";
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
